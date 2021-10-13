@@ -9,14 +9,27 @@ parser.add_argument("--hours", "-hr", type=int, help="The hour (integer).")
 parser.add_argument("--minutes", "-min", type=int, help="The minutes (integer).") 
 args = parser.parse_args()
 
-hour, minute = args.hours, args.minutes
+# Default
+hour, minute = 1, 1
+
+# Set to command line args.
+if args.hours != None:
+    hour = args.hours
+    
+if args.minutes != None:
+    minute = args.minutes
+
+
 
 # Function
 def clockdegrees(hour,minute):
+    
+    print('Calculating time {}:{}'.format(hour,minute))
+    
     min_deg = ((minute % 60) * 6) 
     hour_deg = ((hour * 30) % 360) + (((minute % 60) / 60) * 30)
     
-    return print('Hour degree: {}, Minute degree: {}, Angle between: {}.'.format(hour_deg, min_deg, abs(hour_deg - min_deg)))
+    return print('Hour hand degree: {}, Minute hand degree: {}, Angle between: {}.'.format(hour_deg, min_deg, abs(hour_deg - min_deg)))
 
 # Execute
 clockdegrees(hour,minute)
